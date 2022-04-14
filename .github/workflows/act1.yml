@@ -15,6 +15,7 @@ jobs:
       cancel-in-progress: true
     container:
       image: ghcr.io/greyltc/archlinux:latest
+
     steps:
     - name: Install workflow dependencies
       run: pacman -Sy nodejs patch git --overwrite="*" --noprogressbar --noconfirm --needed
@@ -29,6 +30,9 @@ jobs:
         id -Gn
         printf 'gid: '
         id -Gr
+
+    - name: Mark workdir as safe
+      run: git config --global --add safe.directory $PWD
 
     - name: Checkout
       uses: actions/checkout@v3
