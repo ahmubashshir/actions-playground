@@ -20,7 +20,7 @@ jobs:
       run: pacman -Sy nodejs patch git --overwrite="*" --noprogressbar --noconfirm --needed
     - name: User Info
       run: |
-        ls -lAR
+        ls -lAR /__w
         printf 'usr: '
         id -un
         printf 'uid: '
