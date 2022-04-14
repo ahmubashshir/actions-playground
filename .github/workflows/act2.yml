@@ -1,0 +1,32 @@
+name: act2
+
+on:
+  # Allow manual start
+  workflow_dispatch:
+  push:
+    branches:
+    - master
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    concurrency:
+      group:  ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
+    steps:
+    - name: User Info
+      run: |
+        ls -lAR
+        printf 'usr: '
+        id -un
+        printf 'uid: '
+        id -ur
+        printf 'grp: '
+        id -Gn
+        printf 'gid: '
+        id -Gr
+
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
