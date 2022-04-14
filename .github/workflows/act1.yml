@@ -16,6 +16,8 @@ jobs:
     container:
       image: ghcr.io/greyltc/archlinux:latest
     steps:
+    - name: Install workflow dependencies
+      run: pacman -Sy nodejs patch git --overwrite="*" --noprogressbar --noconfirm --needed
     - name: User Info
       run: |
         ls -lAR
